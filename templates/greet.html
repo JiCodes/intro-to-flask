@@ -2,6 +2,6 @@
 
 {% block body %}
 
-    Hello {{ name }}!
+    Hello, {% if name %}{{ name }}{% else %}World{% endif %}!
 
 {% endblock %}
