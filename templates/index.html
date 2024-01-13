@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intro to Flask</title>
-  </head>
-  <body>
-    hello world
-  </body>
-</html>
+{% extends "layout.html" %} {% block body %}
+
+  <form method="get" action="/greet">
+    <input
+      type="text"
+      name="name"
+      placeholder="Name"
+      autocomplete="off"
+      autofocus
+    />
+    <button type="submit">Submit</button>
+  </form>
+
+{% endblock %
