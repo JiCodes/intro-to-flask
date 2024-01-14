@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
 REGISTRANTS = {}
+# db = SQL("sqlite:///froshims.db")
 
 SPORTS = [
   'Baseball',
@@ -30,8 +31,14 @@ def register():
     return render_template('failure.html')
     
   REGISTRANTS[request.form.get('name')] = request.form.get('sport')
+  
+  # use db 
+  # db.execute("INSERT INTO registrants (name, sport) VALUES (?, ?)", name=request.form.get('name'), sport=request.form.get('sport'))
+  
   return redirect('/registrants')
 
 @app.route('/registrants')
 def registrants():
+  # registrants = db.execute("SELECT * FROM registrants")
+
   return render_template('registrants.html', registrants=REGISTRANTS)
