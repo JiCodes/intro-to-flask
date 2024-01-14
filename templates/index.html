@@ -8,8 +8,8 @@
     autofocus
   />
   {% for sport in sports %}
-  <input type="checkbox" name="sport" value="{{ sport }}" /> {{ sport }} {%
-  endfor %}
+  <input type="radio" name="sport" value="{{ sport }}" /> {{ sport }} 
+  {% endfor %}
   <button type="submit">Submit</button>
 </form>
 

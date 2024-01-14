@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
+
+REGISTRANTS = {}
 
 SPORTS = [
   'Baseball',
@@ -24,7 +26,12 @@ def index():
 def register():
   if not request.form.get('name'):
     return render_template('failure.html')
-  for sport in request.form.getlist('sports'):
-    if sport not in SPORTS:
-      return render_template('failure.html')
-  return render_template('success.html')
+  if not request.form.get('sport') or request.form.get('sport') not in SPORTS:
+    return render_template('failure.html')
+    
+  REGISTRANTS[request.form.get('name')] = request.form.get('sport')
+  return redirect('/registrants')
+
+@app.route('/registrants')
+def registrants():
+  return render_template('registrants.html', registrants=REGISTRANTS)
